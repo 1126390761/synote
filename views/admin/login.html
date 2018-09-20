@@ -1,12 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>管理员登录</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
+
 <body>
+    <div class="layui-container">
+        <form class="layui-form adminlogin" action=""  id="adminlogin">
+            <div class="layui-form-item">
+                <label class="layui-form-label">账号:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" required lay-verify="required" placeholder="请输入账号" autocomplete="off"
+                        class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux H"></div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码:</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="passwd" required lay-verify="required" placeholder="请输入密码"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux H"></div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">验证码:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="coder" required lay-verify="required" placeholder="请输入验证码"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux coder">
+                    <img src="/coder" alt="" id="codeimg">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn admin-login" type="button" lay-submit lay-filter="login">登录</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="https://lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/layui/layui.all.js"></script>
+    <script src="/js/adminlogin.js"></script>
     
 </body>
+
 </html>

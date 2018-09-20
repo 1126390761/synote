@@ -11,17 +11,17 @@ const multer = require('multer');
 
 
 const app = express();
-//������ֲ���
+//定义各种参数
 let hostname = 'http://lulaoshi:81/';
 let secret = 'sports.app.myweb.www';
-// �����м��
+// 启用中间件
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser(secret));
-//ģ����������
+//模板引擎设置
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
 app.set('views', './views');
-//���ݿ�����
+//数据库连接
 global.conn = mysql.createConnection({
     host:'localhost',
     user:'root',
@@ -30,7 +30,7 @@ global.conn = mysql.createConnection({
     database:'synote'
 });
 conn.connect();
-//����session
+//启用session
 app.use(session({
     secret:secret,
     resave:true,
@@ -38,7 +38,7 @@ app.use(session({
     cookie: {maxAge:30*24*3600*1000}
 }));
 
-//�ļ��ϴ�
+//文件上传
 const diskstorage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, `./uploads/${new Date().getFullYear()}/${(new Date().getMonth()+1).toString().padStart(2, '0')}`);
@@ -49,22 +49,22 @@ const diskstorage = multer.diskStorage({
     }
 });
 const upload = multer({storage: diskstorage});
-// ��֤��ͼƬ
+// 验证码图片
 app.get('/coder', (req, res) => {
     var captcha = svgCaptcha.create({noise:4,ignoreChars: '0o1i', size:1,background: '#cc9966',height:38, width:90});
 	req.session.coder = captcha.text;
 	
-	res.type('svg'); // ʹ��ejs��ģ��ʱ������� res.type('html')
+	res.type('svg'); // 使用ejs等模板时如果报错 res.type('html')
 	res.status(200).send(captcha.data);
     
 });
 
-// �ϴ�ͼƬ�ӿ�
+// 上传图片接口
 app.post('/uploads', upload.array('images', 1000), (req ,res)=>{
     console.log(req.files);
     let data = [];
     for (const ad of req.files) {
-        //�ѷ�б��ת��б�ߣ���ֹ����ת�������·������
+        //把反斜线转成斜线，防止各种转义引起的路径错误
         let path = hostname +  ad.path.replace(/\\/g, '/');
         data.push(path);
     }
@@ -73,30 +73,30 @@ app.post('/uploads', upload.array('images', 1000), (req ,res)=>{
         "data": data
     });
 });
-//�������---����Ҫɾ��
+//方便测试---后面要删除
 // app.use(function(req ,res, next){
 //     req.session.aid = 1;
-//     req.session.username = '����Ա';
+//     req.session.username = '管理员';
 //     next();
 // });
 
-//��·��
-//����Ա��¼
+//子路由
+//管理员登录
 app.use('/admin/login', require('./module/admin/login'));
-//����Ա������·��
+//管理员管理子路由
 app.use('/admin', require('./module/admin/index'));
 
 
-//ǰ̨�û���·��
+//前台用户子路由
 //app.use('/', require('./module/user/'));
-//���ⲿ��
+//试题部分
 //app.use('/questions', require('./module/user/questions'));
 
 
-//��̬��Դ�й�
+//静态资源托管
 app.use('/uploads', express.static('uploads'));
 app.use(express.static('static'));
 
 app.listen(81, () => {
-    console.log('�ɹ�����...');
+    console.log('成功启动...');
 });
