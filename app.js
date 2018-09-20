@@ -87,10 +87,10 @@ app.use('/admin/login', require('./module/admin/login'));
 app.use('/admin', require('./module/admin/index'));
 
 
-//前台用户子路由
-//app.use('/', require('./module/user/'));
-//试题部分
-//app.use('/questions', require('./module/user/questions'));
+用户子路由
+app.use('/login', require('./module/user/login'));
+试题部分
+app.use('/signin', require('./module/user/signin'));
 
 
 //静态资源托管
