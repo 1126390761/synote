@@ -8,11 +8,13 @@ router.get('/', (req, res)=>{
 //登录验证
 router.post('/', (req, res)=>{
     let d = req.body;
+    // console.log(req.session.coder);
     //首先验证验证码
-    if(d.coder.toLowerCase() != req.session.coder.toLowerCase()){
+    if(!req.session.coder  || d.coder.toLowerCase() != req.session.coder.toLowerCase()){
         res.json({r:'coder_err'});
         return ;
     }
+
     //进行数据验证
     let sql = 'SELECT * FROM admin WHERE status = 1 AND username = ?';
     conn.query(sql, d.username, (err, result)=>{
@@ -35,7 +37,6 @@ router.post('/', (req, res)=>{
         conn.query(sql, [new Date().toLocaleString(), result[0].aid], (err, result)=>{
             res.json({r:'ok'});
         });
-        
     });
 });
 

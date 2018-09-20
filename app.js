@@ -7,6 +7,7 @@ const session= require('express-session');
 const ejs=require('ejs');
 const svgCaptcha=require('svg-captcha');
 const multer = require('multer');
+global.md5=require("md5");
 
 
 
