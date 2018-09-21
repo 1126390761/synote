@@ -1,0 +1,32 @@
+body{
+    background-color: rgb(241, 241, 241);
+}
+
+h2{
+    display: block;
+    text-align: center;
+    position: relative;
+    top: 150px;
+}
+.t1{
+    width: 370px;
+}
+.H{
+    color: #db5f5f !important;
+}
+.coder-f{
+    position: relative;
+}
+.coder{
+    position: absolute;
+    right: 80px;
+}
+
+.adminlogin{
+    width: 50%;
+    margin: 200px auto;
+}
+
+.coder{
+    padding: 0px 0!important;
+}
