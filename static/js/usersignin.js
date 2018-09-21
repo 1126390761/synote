@@ -23,11 +23,11 @@ $(function () {
 
         } else {
             iptuname.parent().removeClass("has-error");
-        
+
             uerr.html('')
             check = true;
         };
-        console.log(check)
+        
         return check;
 
 
@@ -42,7 +42,7 @@ $(function () {
             check = false;
         } else {
             iptpasswd.parent().removeClass("has-error");
-        
+
             perr.html('')
             check = true;
         }
@@ -64,29 +64,25 @@ $(function () {
     });
 
 
-    $('#login').click(function () {
+    $('#signin').click(function () {
         if (check = false) {
             return false;
         }
 
         $.ajax({
             type: "POST",
-            url: "/user/login",
-            data: $("#userlogin").serialize(),
+            url: "/user/signin",
+            data: $("#usersignin").serialize(),
             dataType: "JSON",
             success: function (result) {
 
 
-                if (result.r == 'user_not') {
+                if (result.r == 'hasuser') {
                     iptuname.parent().addClass("has-error");
-                    uerr.html('账号错误');
+                    uerr.html('账号存在');
                     return;
                 }
-                if (result.r == 'passwd_err') {
-                    iptpasswd.parent().addClass("has-error");
-                    perr.html('密码错误');
-                    return;
-                }
+
                 if (result.r == 'coder_err') {
                     inputCode.parent().addClass("has-error");
                     cerr.html('验证码错误');
@@ -94,11 +90,11 @@ $(function () {
                 } else {
                     inputCode.parent().removeClass("has-error");
                     cerr.html('')
-                    
+                   
                 }
-
-                if(result.r == 'ok'){
+                if(result.r == 'success'){
                     window.location.href = '/admin';}
+
 
             }
         });

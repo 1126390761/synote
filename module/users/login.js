@@ -7,11 +7,11 @@ router.get('/', (req, res) => {
 
 
 });
+
 router.post('/', (req, res) => {
     let d= req.body;
     //验证验证码
-    console.log(d);
-    
+
     if(d.coder.toLowerCase() != req.session.coder.toLowerCase()){
         res.json({r:'coder_err'});
         return ;
@@ -29,10 +29,19 @@ router.post('/', (req, res) => {
             return;
         };
         req.session.uid = result[0].uid;
+        console.log( req.session.uid);
         req.session.username = result[0].username;
-        let sql = 'UPDATE SET users loginnum = loginnum + 1, lasttimes = ? WHERE aid = ?';
-        conn.query(sql, [new Date().toLocaleString(), result[0].aid], (err, result) => {
+        console.log( req.session.username);
+        let sql = 'UPDATE  users SET loginnum = loginnum + 1, lasttimes = ? WHERE uid = ?';
+        conn.query(sql, [new Date().toLocaleString(), result[0].uid], (err, result) => {
+            if(err){
+                res.json({r:"db_err"})
+                console.log(err);
+    
+            }
+            
             res.json({ r: 'ok' });
+            
         });
 
     });
