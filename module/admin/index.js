@@ -10,19 +10,22 @@ router.use((req, res, next)=>{
     next();
 });
 
+//模板引擎渲染主页
 router.get('/', (req, res)=>{
     let data={};
     data.username = req.session.username;
     res.render('admin/index',data);
 });
 
-//添加栏目
-router.get('/addcategory', (req, res)=>{
+//渲染添加分类界面
+router.get('/addcate', (req, res)=>{
     let data={};
     data.username = req.session.username;
-    res.render('admin/addcategory', data);
+    res.render('admin/addcate', data);
 });
-router.post('/addcategory', (req, res)=>{
+
+//添加分类请求的处理
+router.post('/addcate', (req, res)=>{
     let d = req.body.catename;
     let sql = 'INSERT INTO category(catename, aid, username, addtimes) VALUES (?,?,?,?)';
     let data= [d, req.session.aid, req.session.username, new Date().toLocaleString()];
@@ -35,7 +38,6 @@ router.post('/addcategory', (req, res)=>{
         res.json({r:'success'});
     });
 });
-
 
 //添加栏目
 router.get('/updatecate', (req, res)=>{
@@ -96,21 +98,21 @@ router.get('/delcate', (req, res)=>{
 
 
 
-//添加试题
-router.get('/addquestion', (req, res)=>{
+//发布教程
+router.get('/addtech', (req, res)=>{
     let data={};
     data.username = req.session.username;
-    //分类数据
+    //分类教程
     let sql = 'SELECT * FROM category WHERE status = 1';
     conn.query(sql, (err, results)=>{
         data.catelist = results;
-        res.render('admin/addquestion', data);
+        res.render('admin/addtech', data);
     });
     
 });
 
 
-router.post('/addquestion', (req, res)=>{
+router.post('/addtech', (req, res)=>{
     let d = req.body;
     let sql = 'INSERT INTO questions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
 
@@ -136,9 +138,9 @@ router.post('/addquestion', (req, res)=>{
         res.json({r:'success'});
     });
 });
-
-//管理试题
-router.get('/questions', (req, res)=>{
+/*
+//管理教程
+router.get('/techlist', (req, res)=>{
     let data={};
     data.username = req.session.username;
     //当前页数
@@ -164,11 +166,11 @@ router.get('/questions', (req, res)=>{
     }, (err, result) => {
         data.count = result.count;
         data.questions = result.questions;
-        res.render('admin/questions', data);
+        res.render('admin/techlist', data);
     });
     
     
 });
 
-
+*/
 module.exports = router;

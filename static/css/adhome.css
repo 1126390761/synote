@@ -1,0 +1,57 @@
+body{
+    background-color: #f2f2f2;
+    
+}
+header{
+    height: 60px;
+    width: 100%;
+}
+
+.topnav{
+    width: 100%;
+    min-width: 800px;
+}
+.layui-nav{
+    position: fixed;
+    border-radius: 0px;
+    z-index: 9999;
+}
+
+aside{
+    position: relative;
+    height: 100%;
+}
+
+.layui-nav-side{
+    border-top: 5px solid #39635c;
+    border-radius: 0px;
+    top:60px;
+}
+.admin{
+    float: right;
+}
+
+article{
+    margin-top: 60px;
+    height: 100%;
+    min-height: 600px; 
+}
+.index{
+    background-image: url('/img/adminbg.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+footer{
+    margin-left: 107px;
+    min-width: 800px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    font-size: 12px;
+}
+
+footer img{
+    width: 30px;
+    height: 30px;
+}

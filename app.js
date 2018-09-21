@@ -52,9 +52,9 @@ const diskstorage = multer.diskStorage({
 const upload = multer({storage: diskstorage});
 // 验证码图片
 app.get('/coder', (req, res) => {
-    var captcha = svgCaptcha.create({noise:4,ignoreChars: '0o1i', size:1,background: '#cc9966',height:38, width:90});
-	req.session.coder = captcha.text;
-	
+    var captcha = svgCaptcha.create({noise:4,ignoreChars: '0o1i', size:4,background: 'white',height:38, width:130});
+    req.session.coder = captcha.text;
+    console.log(req.session.coder);
 	res.type('svg'); // 使用ejs等模板时如果报错 res.type('html')
 	res.status(200).send(captcha.data);
     

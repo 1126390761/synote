@@ -1,8 +1,10 @@
 body{
-    background-color: rgb(241, 241, 241);
+    /* background: linear-gradient() */
+    background-color: #f2f2f2;
+    /* background-image: url("/img/adminbg.jpg"); */
 }
 
-h2{
+h1{
     display: block;
     text-align: center;
     position: relative;
@@ -11,15 +13,18 @@ h2{
 .t1{
     width: 370px;
 }
-.H{
-    color: #db5f5f !important;
-}
 .coder-f{
     position: relative;
 }
+.H{
+    color: #db5f5f !important;
+    font-size: 12px;
+    float: right;
+}
+
 .coder{
     position: absolute;
-    right: 80px;
+    left: 347px;
 }
 
 .adminlogin{
@@ -29,4 +34,8 @@ h2{
 
 .coder{
     padding: 0px 0!important;
+}
+
+button{
+    width: 370px;
 }
