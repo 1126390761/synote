@@ -33,7 +33,7 @@ router.post('/', (req, res)=>{
         req.session.aid = result[0].aid;
         req.session.username = result[0].username;
         //更新状态
-        let sql = 'UPDATE SET admin loginnums = loginnums + 1, lasttimes = ? WHERE aid = ?';
+        let sql = 'UPDATE admin SET loginnum = loginnum + 1, lasttimes = ? WHERE aid = ?';
         conn.query(sql, [new Date().toLocaleString(), result[0].aid], (err, result)=>{
             res.json({r:'ok'});
         });

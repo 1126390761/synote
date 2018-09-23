@@ -55,3 +55,27 @@ footer img{
     width: 30px;
     height: 30px;
 }
+
+
+.layui-table-view{
+    margin: 10px 30px;
+
+}
+
+#addtech input[type="text"], #addtech .layui-form-selected{
+    width: 500px;
+    z-index: 999999;
+    text-align: left;
+}
+
+.H{
+    color: red;
+}
+.mymain{
+    padding-top: 20px;
+    border-left: 2px solid rgb(187, 20, 31);
+}
+.layui-footer{
+    border-left: 2px solid rgb(187, 20, 31);
+
+}

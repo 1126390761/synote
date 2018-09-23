@@ -1,28 +1,137 @@
 <% include head.html%>
 <% include aside.html%>
 <article class="layui-body">
-    <article class="layui-body">
+    <div class="mymain">
         <span class="layui-breadcrumb">
             <a href="/admin">首页</a>
-            <a href="javascript:;" class="open" data='tech'>教程</a>
-            <a><cite>发布教程</cite></a>
+            <a href="###">教程管理</a>
+            <a><cite>教程添加</cite></a>
         </span>
         <hr>
-
-        <form class="layui-form" action="" id="addcate">
+        <form class="layui-form" action="" id="addtech">
             <div class="layui-form-item">
-                <label class="layui-form-label">教程标题</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="catename" required lay-verify="required" placeholder="请输入分类名称"
-                        autocomplete="off" class="layui-input">
+                <label class="layui-form-label">教程标题<span class="H">*</span></label>
+                <div class="layui-input-block">
+                    <div id="titleeditor" style="width:800px;"></div>
+                        <textarea name="title" id="title" style="display:none" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
                 </div>
             </div>
-
+    
+            <div class="layui-form-item">
+                <label class="layui-form-label">分类</label>
+                <div class="layui-input-block">
+                    <select name="cid" lay-verify="required">
+                        <% for (let c of catelist){ %>
+                        <option value="<%=c.cid%>">
+                            <%=c.catename%>
+                        </option>
+                        <%}%>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">答案<span class="H">*</span></label>
+                <div class="layui-input-block">
+                    <div id="answereditor" style="width:800px;"></div>
+                        <textarea name="answer" id="answer" style="display:none" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">解析</label>
+                <div class="layui-input-block">
+                    <div id="editor" style="width:800px;"></div>
+                        <textarea name="anyle" id="pinfo" style="display:none" placeholder="请输入" class="layui-textarea"></textarea>
+                </div>
+            </div>
+    
+            <div class="layui-form-item">
+                <label class="layui-form-label">关键词</label>
+                <div class="layui-input-block">
+                    <input type="text" name="keywords" placeholder="多个关键词使用空格分开" autocomplete="off"
+                        class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">重要度</label>
+                <div class="layui-input-block">
+                    <select name="import">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>    
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">难度</label>
+                <div class="layui-input-block">
+                    <select name="diffict">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>    
+                </div>
+            </div>
+    
+            <div class="layui-form-item">
+                <label class="layui-form-label">来源</label>
+                <div class="layui-input-block">
+                    <input type="text" name="comefrom"  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+    
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" type="button" lay-submit lay-filter="addcate">保存</button>
+                    <button class="layui-btn" type="button" lay-submit lay-filter="addquestion">保存</button>
                 </div>
             </div>
         </form>
+    </div>
+    
+    <script src="http://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+    
+    <script type="text/javascript">
+    window.onload = function(){
+        var E = window.wangEditor;
+        // 题干的编辑器
+            var titleeditor = new E('#titleeditor');
+            // 配置服务器端地址
+            titleeditor.customConfig.uploadImgServer = '/uploads';
+            titleeditor.customConfig.uploadFileName = 'images';
+            // 同步内容到textarea
+            var $title = $('#title');
+            titleeditor.customConfig.onchange = function (html) {
+                $title.val(html);
+            }
+            titleeditor.create();
+    
+        // 试题答案
+        var answereditor = new E('#answereditor');
+            // 配置服务器端地址
+            answereditor.customConfig.uploadImgServer = '/uploads';
+            answereditor.customConfig.uploadFileName = 'images';
+            // 同步内容到textarea
+            var $answer = $('#answer');
+            answereditor.customConfig.onchange = function (html) {
+                $answer.val(html);
+            }
+            answereditor.create();
+        //试题分析的编辑器
+            var editor = new E('#editor');
+            // 配置服务器端地址
+            editor.customConfig.uploadImgServer = '/uploads';
+            editor.customConfig.uploadFileName = 'images';
+            // 同步内容到textarea
+            var $pinfo = $('#pinfo');
+            editor.customConfig.onchange = function (html) {
+                $pinfo.val(html);
+            }
+            editor.create();
+    }
+       
+    </script>
 
-        <% include footer.html%>
+<% include footer.html%>

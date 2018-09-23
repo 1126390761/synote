@@ -13,7 +13,7 @@ router.use((req, res, next)=>{
 //模板引擎渲染主页
 router.get('/', (req, res)=>{
     let data={};
-    data.username = req.session.username;
+    data.username = req.session.username;//把用户名保存下来传到前台去方便使用
     res.render('admin/index',data);
 });
 
@@ -39,7 +39,9 @@ router.post('/addcate', (req, res)=>{
     });
 });
 
-//添加栏目
+
+
+//更新分类
 router.get('/updatecate', (req, res)=>{
     let data={};
     data.username = req.session.username;
@@ -57,10 +59,10 @@ router.get('/updatecate', (req, res)=>{
     
 });
 router.post('/updatecate', (req, res)=>{
-    let d = req.body;
+    let data = req.body;
+    // console.log(req.body);
     let sql = 'UPDATE category SET catename = ? WHERE cid = ?';
-    let data= [d.catename, d.cid];
-    conn.query(sql, data, (err, result)=>{
+    conn.query(sql, [data.d[0],data.d[1]], (err, result)=>{
         if(err){
             console.log(err);
             res.json({r:'db_err'});
@@ -70,7 +72,7 @@ router.post('/updatecate', (req, res)=>{
     });
 });
 
-//管理栏目
+//在表格中显示所有分类
 router.get('/catelist', (req, res)=>{
     let data={};
     data.username = req.session.username;
@@ -80,7 +82,6 @@ router.get('/catelist', (req, res)=>{
         data.catelist = results;
         res.render('admin/catelist', data);
     });
-    
 });
 
 //删除操作
@@ -96,6 +97,27 @@ router.get('/delcate', (req, res)=>{
     });
 });
 
+//批量删除
+router.get('/delcates', (req, res)=>{ 
+    // if(Object.keys(req.query).length==0){//判断传过来的是否为空值,前台进行判断x
+    //     res.json({r:'none'});
+    //     return;
+    // }
+    console.log(req.query.cid.join(','));//将传过来的数组转换成字符串，方便sql语句使用
+    let sql = `UPDATE category SET status = 0 WHERE cid IN (${req.query.cid.join(',')})`;
+    conn.query(sql,(err, result)=>{
+        if(err){
+            console.log(err);
+            res.json({r:'db_err'});
+            return ;
+        }
+        res.json({r:'success'});
+    });
+});
+
+
+
+
 
 
 //发布教程
@@ -108,7 +130,6 @@ router.get('/addtech', (req, res)=>{
         data.catelist = results;
         res.render('admin/addtech', data);
     });
-    
 });
 
 

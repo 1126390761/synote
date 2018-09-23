@@ -1,10 +1,10 @@
 $(function () {
     var form = layui.form;
-    //ÑéÖ¤ÂëË¢ĞÂ
+    //éªŒè¯ç åˆ·æ–°
     $('#codeimg').click(function () {
         $(this).attr('src', '/coder?' + new Date());
     });
-    // ÓÃ»§µÇÂ¼
+    // ç”¨æˆ·ç™»å½•
     form.on('submit(login)', function(data){
         $.ajax({
             url: '/admin/login',
@@ -15,16 +15,16 @@ $(function () {
             success: function (result) {
                 console.log(result);
                 if(result.r == 'coder_err'){
-                    $('input[name="coder"]').parent().next('.layui-form-mid').html('ÑéÖ¤Âë´íÎó');
+                    $('input[name="coder"]').parent().next('.layui-form-mid').html('éªŒè¯ç é”™è¯¯');
                     $('#codeimg').attr('src', '/coder?' + new Date());
                     return;
                 }
                 if(result.r == 'u_not'){
-                    $('input[name="username"]').parent().next('.layui-form-mid').html('ÕËºÅ²»´æÔÚ');
+                    $('input[name="username"]').parent().next('.layui-form-mid').html('è´¦å·ä¸å­˜åœ¨');
                     return ;
                 }
                 if(result.r == 'p_err'){
-                    $('input[name="passwd"]').parent().next('.layui-form-mid').html('ÃÜÂë²»ÕıÈ·');
+                    $('input[name="passwd"]').parent().next('.layui-form-mid').html('å¯†ç ä¸æ­£ç¡®');
                     return ;
                 }
                 if(result.r == 'ok'){
@@ -32,14 +32,15 @@ $(function () {
                 }
             }
         });
-        return false; //×èÖ¹±íµ¥Ìø×ª¡£Èç¹ûĞèÒª±íµ¥Ìø×ª£¬È¥µôÕâ¶Î¼´¿É¡£
+        return false; //é˜»æ­¢è¡¨å•è·³è½¬ã€‚å¦‚æœéœ€è¦è¡¨å•è·³è½¬ï¼Œå»æ‰è¿™æ®µå³å¯ã€‚
       });
-    $('input').focus(function (e) {
+      
+    $('input').focus(function (e) {        
         if($('.layui-form-danger').length){
             return ;
         }
+        //ä¿®æ”¹çš„æ—¶å€™å–æ¶ˆé”™è¯¯æç¤º
         $(e.target).parent().next('.layui-form-mid').html('');
-        
     });
 
 });

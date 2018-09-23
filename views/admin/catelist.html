@@ -1,5 +1,32 @@
 <% include head.html%>
 <% include aside.html%>
 <article class="layui-body">
-    
+    <!-- <table id="catetable" lay-filter="test"></table> -->
+    <table lay-filter="catelist" class="catelist">
+        <thead>
+          <tr>
+            <th lay-data="{field: 'check', title: '选择框', type:'checkbox', width:80, fixed: 'left'}"></th>
+            <th lay-data="{field: 'id', title: '分类ID', width:100, sort: true,align:'center'}">ID</th>
+            <th lay-data="{field: 'name', title: '分类名', width:100}">分类名</th>
+            <th lay-data="{field: 'author', title: '发布者', width:100}">发布者</th>
+            <th lay-data="{field: 'time', title: '发布时间', width:200, sort: true}">发布时间</th>
+            <th lay-data="{field: 'action', title: '操作', width:140,align:'left'}">操作</th>
+          </tr> 
+        </thead>
+        <tbody>
+            <% for (let c of catelist){ %>
+            <tr>
+                <td></td>
+                <td><%=c.cid%></td>
+                <td><%=c.catename%></td>
+                <td><%=c.username%></td>
+                <td><%=c.addtimes.toLocaleString()%></td>
+                 <td>
+                    <a href="###" class="delcate layui-btn layui-btn-danger layui-btn-xs" cid="<%=c.cid%>"><i class="layui-icon">&#xe640;</i></a>
+                   <!-- <a href="/admin/updatecate?cid=<%=c.cid%>" class="layui-btn layui-btn-xs"><i class="layui-icon">&#xe642;</i></a> -->
+                </td>
+          </tr>
+          <%}%>
+        </tbody>
+      </table>
     <% include footer.html%>
