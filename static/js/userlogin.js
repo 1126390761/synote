@@ -98,7 +98,7 @@ $(function () {
                 }
 
                 if(result.r == 'ok'){
-                    window.location.href = '/admin';}
+                    window.location.href = '/users/uindex';}
 
             }
         });
