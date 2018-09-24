@@ -5,17 +5,19 @@
         <span class="layui-breadcrumb">
             <a href="/admin">首页</a>
             <a href="###">教程管理</a>
-            <a><cite>教程添加</cite></a>
+            <a><cite>修改教程</cite></a>
         </span>
         <hr>
-        <form class="layui-form" action="" id="addtech">
+        <form class="layui-form" action="" id="updatetech">
             <div class="layui-form-item">
                 <label class="layui-form-label">教程标题<span class="H">*</span></label>
                 <div class="layui-input-block">
                     <div id="titleeditor" style="width:800px;"></div>
+                        
                         <textarea name="title" id="title" style="display:none" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
                 </div>
             </div>
+    
             <div class="layui-form-item">
                 <label class="layui-form-label">分类</label>
                 <div class="layui-input-block selectblock">
@@ -30,25 +32,27 @@
                 <label class="layui-form-label">内容<span class="H">*</span></label>
                 <div class="layui-input-block">
                     <div id="techconeditor" style="width:800px;"></div>
-                        <textarea name="techcon" id="techcon" style="display:block" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+                        <textarea name="techcon" id="techcon" style="display:none" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
                 </div>
             </div>    
             <div class="layui-form-item">
                 <label class="layui-form-label">关键词</label>
                 <div class="layui-input-block">
-                    <input type="text" name="keywords" placeholder="多个关键词使用空格分开" autocomplete="off"
+                    <input type="text" name="keywords" placeholder="多个关键词使用空格分开" value="<%=techlist[0].keywords%>" autocomplete="off"
                         class="layui-input">
                 </div>
             </div>    
             <div class="layui-form-item">
                 <label class="layui-form-label">来源</label>
                 <div class="layui-input-block">
-                    <input type="text" name="comefrom"  autocomplete="off" class="layui-input">
+                    <input type="text" name="comefrom" value="<%=techlist[0].comefrom%>"  autocomplete="off" class="layui-input">
                 </div>
             </div>
+                    <!-- <label class="layui-form-label">所修改教程的id</label> -->
+                        <input type="hidden" name="tid" value="<%=techlist[0].tid%>"  autocomplete="off" class="layui-input">
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" type="button" lay-submit lay-filter="addtech">保存</button>
+                    <button class="layui-btn" type="button" lay-submit lay-filter="updatetech">确定修改</button>
                 </div>
             </div>
         </form>
@@ -69,6 +73,7 @@
                 $title.val(html);
             }
             titleeditor.create();
+            titleeditor.txt.html('<%-techlist[0].title%>');
         // 内容的编辑器
             var techconeditor = new E('#techconeditor');
             // 配置服务器端地址
@@ -80,6 +85,7 @@
                 $techcon.val(html);
             }
             techconeditor.create();
+            techconeditor.txt.html('<%-techlist[0].tcontent%>');
     }
     </script>
     <script>

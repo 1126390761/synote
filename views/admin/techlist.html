@@ -2,34 +2,36 @@
 <% include aside.html%>
 <article class="layui-body">
     <!-- <table id="catetable" lay-filter="test"></table> -->
-    <table lay-filter="catelist" class="catelist">
+    <table lay-filter="techlist" class="techlist">
         <thead>
           <tr>
-            <th lay-data="{field: 'check', title: 'Ñ¡Ôñ¿ò', type:'checkbox', width:80, fixed: 'left'}"></th>
-            <th lay-data="{field: 'id', title: '½Ì³ÌID', width:100, sort: true,align:'center'}">½Ì³ÌID</th>
-            <th lay-data="{field: 'title', title: '½Ì³ÌÃû', width:100}">½Ì³ÌÃû</th>
-            <th lay-data="{field: 'catename', title: '½Ì³Ì·ÖÀà', width:100}">½Ì³Ì·ÖÀà</th>
-            <th lay-data="{field: 'keywords', title: '¹Ø¼ü´Ê', width:100}">¹Ø¼ü´Ê</th>
-            <th lay-data="{field: 'keywords', title: '¹Ø¼ü´Ê', width:100}">À´×ÔÓÚ</th>
-            <th lay-data="{field: 'author', title: '·¢²¼Õß', width:100}">·¢²¼Õß</th>
-            <th lay-data="{field: 'time', title: '·¢²¼Ê±¼ä', width:200, sort: true}">·¢²¼Ê±¼ä</th>
-            <th lay-data="{field: 'action', title: '²Ù×÷', width:140,align:'left'}">²Ù×÷</th>
+            <th lay-data="{field: 'check', title: 'é€‰æ‹©æ¡†', type:'checkbox', width:80, fixed: 'left'}"></th>
+            <th lay-data="{field: 'id', title: 'æ•™ç¨‹ID', width:100, sort: true,align:'center'}">æ•™ç¨‹ID</th>
+            <th lay-data="{field: 'title', title: 'æ•™ç¨‹å', width:100}">æ•™ç¨‹å</th>
+            <th lay-data="{field: 'catename', title: 'æ•™ç¨‹åˆ†ç±»', width:100}">æ•™ç¨‹åˆ†ç±»</th>
+            <th lay-data="{field: 'techcon', title: 'æ•™ç¨‹å†…å®¹', width:100}">æ•™ç¨‹å†…å®¹</th>
+            <th lay-data="{field: 'keywords', title: 'å…³é”®è¯', width:100}">å…³é”®è¯</th>
+            <th lay-data="{field: 'comefrom', title: 'æ¥æº', width:100}"></th>
+            <th lay-data="{field: 'author', title: 'å‘å¸ƒè€…', width:100}">å‘å¸ƒè€…</th>
+            <th lay-data="{field: 'time', title: 'å‘å¸ƒæ—¶é—´', width:180, sort: true}">å‘å¸ƒæ—¶é—´</th>
+            <th lay-data="{field: 'action', title: 'æ“ä½œ', width:118,align:'left'}">æ“ä½œ</th>
           </tr> 
         </thead>
         <tbody>
-            <% for (let c of catelist){ %>
+            <% for (let t of techlist){ %>
             <tr>
                 <td></td>
                 <td><%=t.tid%></td>
-                <td><%=t.techname%></td>
+                <td><%-t.title%></td>
                 <td><%=t.catename%></td>
+                <td><%-t.tcontent%></td>
                 <td><%=t.keywords%></td>
                 <td><%=t.comefrom%></td>
                 <td><%=t.username%></td>
                 <td><%=t.addtimes.toLocaleString()%></td>
                  <td>
-                    <a href="###" class="delcate layui-btn layui-btn-danger layui-btn-xs" cid="<%=c.cid%>"><i class="layui-icon">&#xe640;</i></a>
-                    <a href="/admin/updatecate?cid=<%=c.cid%>" class="layui-btn layui-btn-xs"><i class="layui-icon">&#xe642;</i></a>
+                    <a href="###" class="deltech layui-btn layui-btn-danger layui-btn-xs" tid="<%=t.tid%>"><i class="layui-icon">&#xe640;</i></a>
+                    <a href="/admin/updatetech?tid=<%=t.tid%>" class="layui-btn layui-btn-xs"><i class="layui-icon">&#xe642;</i></a>
                 </td>
           </tr>
           <%}%>

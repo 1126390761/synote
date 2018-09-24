@@ -120,7 +120,7 @@ router.get('/delcates', (req, res)=>{
 
 
 
-//发布教程
+//渲染发布教程页面
 router.get('/addtech', (req, res)=>{
     let data={};
     data.username = req.session.username;
@@ -132,19 +132,16 @@ router.get('/addtech', (req, res)=>{
     });
 });
 
-
+//响应添加教程请求
 router.post('/addtech', (req, res)=>{
     let d = req.body;
-    let sql = 'INSERT INTO questions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    let sql = 'INSERT INTO technology VALUES (?,?,?,?,?,?,?,?,?,?)';
 
     let data= [ null, 
                 d.title,
                 d.cid,
-                d.answer,
-                d.anyle,
+                d.techcon,
                 d.keywords,
-                d.import,
-                d.diffict,
                 d.comefrom,
                 req.session.aid, 
                 req.session.username, 
@@ -159,39 +156,108 @@ router.post('/addtech', (req, res)=>{
         res.json({r:'success'});
     });
 });
-/*
-//管理教程
+
+//在表格中显示所有分类
 router.get('/techlist', (req, res)=>{
     let data={};
     data.username = req.session.username;
-    //当前页数
-    let pagenum = 1;
-    data.pagenum = pagenum;
-
-    let page = req.query.page ? req.query.page : 1;
-    data.page = page;
-    async.series({
-        count: function (callback) {
-            let sql = 'SELECT COUNT(*) AS nums FROM questions WHERE status = 1';
-            conn.query(sql, (err, result) => {
-                callback(null, result[0].nums);
-            });
-        },
-        questions:function (callback) {
-            //查询分类信息
-            let sql = 'SELECT q.*, c.catename FROM questions AS q  LEFT JOIN category AS c ON q.cid = c.cid WHERE q.status = 1 LIMIT ?, ?';
-            conn.query(sql, [pagenum*(page-1), pagenum], (err, results)=>{
-                callback(null, results);
-            });
-        }
-    }, (err, result) => {
-        data.count = result.count;
-        data.questions = result.questions;
+    //查询分类信息
+    let sql = 'SELECT t.*, c.catename FROM technology AS t  LEFT JOIN category AS c ON t.cid = c.cid WHERE t.status = 1';
+    conn.query(sql, (err, results)=>{
+        data.techlist = results;
         res.render('admin/techlist', data);
     });
-    
+});
+
+// 单项删除教程
+router.get('/deltech', (req, res)=>{
+    let sql = 'UPDATE technology SET status = 0 WHERE tid = ? LIMIT 1';
+    conn.query(sql, req.query.tid, (err, result)=>{
+        if(err){
+            console.log(err);
+            res.json({r:'db_err'});
+            return ;
+        }
+        res.json({r:'success'});
+    });
+});
+
+//批量删除教程
+router.get('/deltechs', (req, res)=>{ 
+    console.log(req.query.tid.join(','));//将传过来的数组转换成字符串，方便sql语句使用
+    let sql = `UPDATE technology SET status = 0 WHERE tid IN (${req.query.tid.join(',')})`;
+    conn.query(sql,(err, result)=>{
+        if(err){
+            console.log(err);
+            res.json({r:'db_err'});
+            return ;
+        }
+        res.json({r:'success'});
+    });
+});
+
+//按钮修改教程名
+router.post('/updatetech', (req, res)=>{
+    let data = req.body;
+    // console.log(req.body);
+    let sql = 'UPDATE technology SET title = ? WHERE tid = ?';
+    conn.query(sql, [data.d[0],data.d[1]], (err, result)=>{
+        if(err){
+            console.log(err);
+            res.json({r:'db_err'});
+            return ;
+        }
+        res.json({r:'success'});
+    });
+});
+
+//渲染修改教程页面
+router.get('/updatetech', (req, res)=>{
+    let data={};
+    data.username = req.session.username;
+    data.tid=req.query.tid;
+    async.series({
+        findtech:function(callback){
+            let sql = 'SELECT * FROM technology WHERE tid = ? ';
+            conn.query(sql,data.tid, (err,result)=>{
+                callback(null, result);
+            // res.render('admin/updatetech', data);
+            });
+        },
+        findcates:function(callback){
+            let sql ='SELECT * FROM category WHERE status = 1';
+            conn.query(sql,(err,result)=>{
+                callback(null,result)
+            });
+        }
+    },(err,result)=>{
+        data.techlist=result.findtech;
+        data.catelist=result.findcates;
+        res.render('admin/updatetech',data);
+    });
     
 });
 
-*/
+//修改教程细节
+router.post('/updatetechs', (req, res)=>{
+    let d = req.body;    
+    let sql = 'UPDATE technology SET title=?,cid=?,tcontent=?,keywords=?,comefrom=?,aid=?,username=? WHERE tid=?';
+    let data= [ d.title,
+                d.cid,
+                d.techcon,
+                d.keywords,
+                d.comefrom,
+                req.session.aid, 
+                req.session.username,
+                req.body.tid
+                ];
+    conn.query(sql, data, (err, result)=>{
+        if(err){
+            console.log(err);
+            res.json({r:'db_err'});
+            return ;
+        }
+        res.json({r:'success'});
+    });
+});
 module.exports = router;

@@ -13,7 +13,7 @@ global.md5=require("md5");
 
 const app = express();
 //定义各种参数
-let hostname = 'http://lulaoshi:81/';
+let hostname = 'http://localhost:81/';
 let secret = 'sports.app.myweb.www';
 // 启用中间件
 app.use(bodyParser.urlencoded({extended: true}));
@@ -62,7 +62,7 @@ app.get('/coder', (req, res) => {
 
 // 上传图片接口
 app.post('/uploads', upload.array('images', 1000), (req ,res)=>{
-    console.log(req.files);
+    // console.log(req.files);
     let data = [];
     for (const ad of req.files) {
         //把反斜线转成斜线，防止各种转义引起的路径错误
@@ -75,11 +75,11 @@ app.post('/uploads', upload.array('images', 1000), (req ,res)=>{
     });
 });
 //方便测试---后面要删除
-// app.use(function(req ,res, next){
-//     req.session.aid = 1;
-//     req.session.username = '管理员';
-//     next();
-// });
+app.use(function(req ,res, next){
+    req.session.aid = 1;
+    req.session.username = '管理员';
+    next();
+});
 
 //子路由
 //管理员登录
@@ -88,9 +88,9 @@ app.use('/admin/login', require('./module/admin/login'));
 app.use('/admin', require('./module/admin/index'));
 
 
-用户子路由
+//用户子路由
 app.use('/login', require('./module/user/login'));
-试题部分
+//试题部分
 app.use('/signin', require('./module/user/signin'));
 
 

@@ -43,7 +43,7 @@ article{
 }
 
 footer{
-    margin-left: 107px;
+    margin-left: 174px;
     min-width: 800px;
     text-align: center;
     position: absolute;
@@ -62,7 +62,11 @@ footer img{
 
 }
 
-#addtech input[type="text"], #addtech .layui-form-selected{
+#addtech{
+    width: 800px;
+}
+
+.selectblock{
     width: 500px;
     z-index: 999999;
     text-align: left;
