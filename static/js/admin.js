@@ -7,6 +7,23 @@ $(function () {
         }
     });
 
+    //发起退出请求
+    $('#logoff').click(function () {
+        $.ajax({
+            url: '/admin/logoff',
+            type: 'GET',
+            dataType: 'JSON',
+            data: [],
+            success: function (result) {
+                if (result.r == 'success') {
+                    layer.msg('退出成功',{time: 1000,icon: 1});
+                      window.location.reload();
+                }
+            }
+        });
+    })
+
+
     let form = layui.form;
     // 添加分类
     form.on('submit(addcate)', function (data) {

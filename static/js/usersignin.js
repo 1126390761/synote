@@ -4,7 +4,7 @@ $(function () {
     });
 
 
-    //登陆
+    //注册
     var iptuname = $('input[name="username"]');
     var iptpasswd = $('input[name="password"]');
     var inputCode = $('input[name="coder"]');

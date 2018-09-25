@@ -26,7 +26,7 @@ app.set('views', './views');
 global.conn = mysql.createConnection({
     host:'localhost',
     user:'root',
-    password:'123456',
+    password:'admin',
     port:3306,
     database:'synote'
 });
@@ -52,12 +52,11 @@ const diskstorage = multer.diskStorage({
 const upload = multer({storage: diskstorage});
 // 验证码图片
 app.get('/coder', (req, res) => {
-    var captcha = svgCaptcha.create({noise:4,ignoreChars: '0o1i', size:4,background: 'white',height:38, width:130});
-    req.session.coder = captcha.text;
-    console.log(req.session.coder);
+    var captcha = svgCaptcha.createMathExpr();
+	req.session.coder = captcha.text;
+	
 	res.type('svg'); // 使用ejs等模板时如果报错 res.type('html')
 	res.status(200).send(captcha.data);
-    
 });
 
 // 上传图片接口
@@ -81,18 +80,23 @@ app.post('/uploads', upload.array('images', 1000), (req ,res)=>{
 //     req.session.headerimg = 'http://localhost:81/uploads/2018/09/1537845404540_41035549.jpg';
 //     next();
 // });
-// 
+
 //子路由
 //管理员登录
-app.use('/admin/login', require('./module/admin/login'));
-//管理员管理子路由
-app.use('/admin', require('./module/admin/index'));
+// app.use('/admin/login', require('./module/admin/login'));
+// //管理员管理子路由
+// app.use('/admin', require('./module/admin/index'));
 
+//用户登陆子路由
+app.use('/users/login', require('./module/users/login'));
+
+//用户注册子路由
+app.use('/users/signin', require('./module/users/signin'));
 
 //用户子路由
-app.use('/login', require('./module/users/login'));
-//试题部分
-app.use('/signin', require('./module/users/signin'));
+app.use('/users',require('./module/users/'));
+
+
 
 
 //静态资源托管

@@ -10,12 +10,18 @@ router.use((req, res, next)=>{
     next();
 });
 
+// 响应退出请求
+router.get('/logoff',(req,res)=>{
+    req.session.aid='';
+    res.json({r:'success'});
+});
+
 //模板引擎渲染主页
 router.get('/', (req, res)=>{
     let data={};
     data.username =req.session.username;//把用户名保存下来传到前台去方便使用
     data.headerimg=req.session.headerimg;
-    console.log(data);
+    // console.log(data);
     res.render('admin/index',data);
 });
 
