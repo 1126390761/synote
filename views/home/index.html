@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>主页</title>
+
+<!-- Behavioral Meta Data -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+
+<a name="ancre"></a>
+
+<!-- CACHE -->
+<div class="cache"></div>
+
+<!-- HEADER -->
+
+<div id="wrapper-header">
+	<div id="main-header" class="object">
+		<div class="logo"></div>
+        <div id="main_tip_search"> 
+			<form>
+				<input type="text" name="search" id="tip_search_input" list="search" required>
+			</form>
+		</div>
+        <div id="stripes"></div>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+
+<div id="wrapper-navbar">
+		<div class="navbar object">
+    		<div id="wrapper-sorting">
+            <div id="wrapper-title-1">
+				<a href="#"> <div class="top-rated object">最新图片</div></a>
+            	<div id="fleche-nav-1"></div>
+    		</div>
+            
+            <div id="wrapper-title-2">
+            <a href="#"><div class="recent object">Recent</div></a>
+                <div id="fleche-nav-2"></div>
+    		</div>
+            
+            <div id="wrapper-title-3">
+            <a href="#"><div class="oldies object">Oldies</div></a>
+                <div id="fleche-nav-3"></div>
+    		</div>
+            </div>
+            <div id="wrapper-bouton-icon">
+            	<div id="bouton-ai"><img src="/h_img/icon-ai.svg" alt="illustrator" title="Illustrator" height="28" width="28"></div>
+            	<div id="bouton-psd"><img src="/h_img/icon-psd.svg" alt="photoshop" title="Photoshop" height="28" width="28"></div>
+            	<div id="bouton-theme"><img src="/h_img/icon-themes.svg" alt="theme" title="Theme" height="28" width="28"></div>
+            	<div id="bouton-font"><img src="/h_img/icon-font.svg" alt="font" title="Font" height="28" width="28"></div>
+            	<div id="bouton-photo"><img src="/h_img/icon-photo.svg" alt="photo" title="Photo" height="28" width="28"></div>
+            	<div id="bouton-premium"><img src="/h_img/icon-premium.svg" alt="premium" title="Premium" height="28" width="28"></div>
+			</div>
+    	</div>
+    </div>
+
+<!-- FILTER -->	
+
+	<div id="main-container-menu" class="object">
+    	<div class="container-menu">
+        	
+            <div id="main-cross">
+            	<div id="cross-menu"></div>
+            </div>
+            
+            <div id="main-small-logo">
+            	<div class="small-logo"></div>
+            </div>
+            
+            <div id="main-premium-ressource">
+                <div class="premium-ressource"><a href="#">Premium resources</a></div>
+            </div>
+            
+            <div id="main-themes">
+                <div class="themes"><a href="#">Latest themes</a></div>
+            </div>
+            
+            <div id="main-psd">
+                <div class="psd"><a href="#">PSD goodies</a></div>
+            </div>
+                
+            <div id="main-ai">
+                <div class="ai"><a href="#">Illustrator freebies</a></div>
+            </div>
+            
+            <div id="main-font">
+                <div class="font"><a href="#">Free fonts</a></div>
+            </div>
+            
+            <div id="main-photo">
+                <div class="photo"><a href="#">Free stock photos</a></div>
+            </div>
+            
+        </div>
+    </div>
+
+<!-- PORTFOLIO -->
+
+	<div id="wrapper-container">
+    
+		<div class="container object">
+
+			<div id="main-container-image">
+                       
+					<section class="work">
+					
+					
+
+						<% for(let p of photos){%>
+							<figure class="white">
+								<a href="/index/pinfo?pid=<%=p.pid%>">
+									<img src="<%=p.mainpic%>" alt="" />
+									<!-- 显示展示图 -->
+								</a>
+								<div id="wrapper-part-info">
+									<div id="part-info"><%=p.title%></div>
+								</div>
+							</figure>	
+	
+							<%}%>
+
+                        
+					</section>
+                    
+				</div>	
+            	    
+			</div>
+         
+    <div id="wrapper-oldnew">
+    	<div class="oldnew">
+        	<div class="wrapper-oldnew-prev">
+            	<div id="oldnew-prev"></div>
+        	</div>
+            <div class="wrapper-oldnew-next">
+            	<div id="oldnew-next"></div>
+    		</div>
+        </div>
+	</div>     
+            
+
+	    
+	<div id="main-container-footer">
+		<div class="container-footer">
+        	
+            <div id="row-1f">
+            	<div class="text-row-1f"><span style="font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;">What is Platz</span><br>Platz is a blog showcasing hand-picked free themes, design stuff, free fonts and other resources for web designers.</div>
+            </div>
+            
+            <div id="row-2f">
+            	<div class="text-row-2f"><span style="font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;">How does it work</span><br>Platz offers you all the latest freebies found all over the fourth corners without to pay.</div>
+            </div>
+            
+            <div id="row-3f">
+            	<div class="text-row-3f"><span style="font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;">Get in touch!</span><br>Subscribe our RSS or follow us on Facebook, Google+, Pinterest or Dribbble to keep updated.</div>
+            </div>
+            
+            <div id="row-4f">
+            	<div class="text-row-4f"><span style="font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;">Newsletter</span><br>You will be informed monthly about the latest content avalaible.</div>
+
+				<div id="main_tip_newsletter"> 
+					<form>
+						<input type="text" name="newsletter" id="tip_newsletter_input" list="newsletter" autocomplete="off" required>
+					</form>
+				</div>
+            </div>
+            
+		</div>
+	</div>
+    
+    
+    <div id="wrapper-copyright">
+		<div class="copyright">
+    		<div class="copy-text object">Copyright &copy; 2018.Company name All rights reserved.More Templates - Collect from</div>
+    		
+			<div class="wrapper-navbouton">
+    			<div class="google object">g</div>
+    			<div class="facebook object">f</div>
+    			<div class="linkin object">i</div>
+    			<div class="dribbble object">d</div>
+    		</div>
+    	</div>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+
+<script src="/h_js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/h_js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="/h_js/jquery.localScroll.min.js"></script>
+<script type="text/javascript" src="/h_js/jquery-animate-css-rotate-scale.js"></script>
+<script type="text/javascript" src="/h_js/fastclick.min.js"></script>
+<script type="text/javascript" src="/h_js/jquery.animate-colors-min.js"></script>
+<script type="text/javascript" src="/h_js/jquery.animate-shadow-min.js"></script>    
+<script type="text/javascript" src="/h_js/main.js"></script>
+<script>
+
+/* PRELOADER */
+
+
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} else {
+		window.onload = function() {
+			if (oldonload) {
+				oldonload();
+			}
+			func();
+		}
+	}
+}
+addLoadEvent(preloader);
+
+</script>
+
+</body>
+</html>
