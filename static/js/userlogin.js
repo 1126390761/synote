@@ -71,7 +71,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: "/user/login",
+            url: "/users/login",
             data: $("#userlogin").serialize(),
             dataType: "JSON",
             success: function (result) {
@@ -98,7 +98,7 @@ $(function () {
                 }
 
                 if(result.r == 'ok'){
-                    window.location.href = '/users/uindex';}
+                    window.location.href = '/users';}
 
             }
         });

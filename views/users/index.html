@@ -1,0 +1,31 @@
+<% include head.html%>
+  <div class="layui-body">
+    <div style="padding: 15px;">
+        <div class="user-bg user-cover-bg">
+            <div class="user-avatar">
+            <div class="avatar">
+            
+            </div>
+            </div>
+            <div class="user-numbers-div">
+            </div>
+            <h2><%=username%></h2>
+            <br>
+            <div class="user-stats">
+            <ul>
+            <li>UID: <span class="badge badge-inverse"><%=uid%></span></li>
+            <li>上次登录时间：<span><%=users[0].lasttimes.toLocaleString()%></span></li>
+            <li>用户名：<%=username%></li>
+         
+          
+            </ul>
+            <a href="/users/updata" class="btn  btn-info btn-large">投稿</a>
+            </div>
+            <br>
+            <div class="clear-fix"></div>
+            </div>
+    
+    
+    </div>
+  </div>
+<% include foot.html%>

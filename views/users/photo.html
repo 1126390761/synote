@@ -1,0 +1,42 @@
+
+<% include head.html%>
+<div class="layui-body mymain">
+    <span class="layui-breadcrumb">
+        <a href="/admin">首页</a>
+        <a href="/admin/category">分类管理</a>
+        <a><cite>分类列表</cite></a>
+    </span>
+    <hr>
+    <table class="layui-table  mytable photolist">
+            <colgroup>
+              <col width="150">
+              <col width="200">
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>分类名称</th>
+                <th>操作人</th>
+                <th>添加时间</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody>
+                <% for (let c of photos){ %>
+              <tr>
+                <td><%=c.pid%></td>
+                <td><%=c.title%></td>
+                <td><%=c.username%></td>
+                <td><%=c.addtimes.toLocaleString()%></td>
+                <td>
+                        <a href="###" class="delcate" cid="<%=c.pid%>">删除</a>
+                        | <a href="/users/updataphoto?pid=<%=c.pid%>">修改</a>
+                        
+                </td>
+              </tr>
+              <%}%>
+            </tbody>
+          </table>
+</div>
+<% include foot.html%>
