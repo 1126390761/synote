@@ -168,6 +168,17 @@ $(function () {
 
     //添加教程
     form.on('submit(addtech)', function(data){
+        let checknull=!!($('#techcon').val().trim()=='');
+        let checknull1=!!($('#title').val().trim()=='');
+        
+        if($('#techcon').val()=='<p><br></p>'||$('#title').val()=='<p><br></p>'||checknull||checknull1){//排除输入又全删后依然能提交的情况
+            layer.open({
+                title: '消息',
+                icon:'2',
+                content: '内容或标题不能为空'
+            });
+            return;
+        }
         $.ajax({
             url: '/admin/addtech',
             type: 'POST',
@@ -320,7 +331,19 @@ $(function () {
     });  
     
     //修改教程细节 发起请求
-    form.on('submit(updatetech)', function(data){
+    form.on('submit(updatetech)', function(){
+        //需要完善
+        let checknull=!!($('#techcon').val().trim()=='');
+        let checknull1=!!($('#title').val().trim()=='');
+        
+        if($('#techcon').val()=='<p><br></p>'||$('#title').val()=='<p><br></p>'||checknull||checknull1){//排除输入又全删后依然能提交的情况
+            layer.open({
+                title: '消息',
+                icon: 2,
+                content: '内容或标题不能为空'
+            });
+            return;
+        }
         $.ajax({
             url: '/admin/updatetechs',
             type: 'POST',
@@ -331,6 +354,7 @@ $(function () {
                 if (result.r == 'success') {
                     layer.open({
                         title: '消息',
+                        icon:2,
                         content: '教程修改成功'
                     });
                 }
@@ -339,6 +363,62 @@ $(function () {
         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
       });
 
+
+      //验证电话是否正确的函数
+      function isPoneAvailable(str) {
+        var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+        if (!myreg.test(str)) {
+            return false;
+        } else {
+            return true;
+        }
+      }
+
+      //验证邮箱的是否正确的函数
+      function isEmail(str) {
+        var myreg=/^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
+        if (!myreg.test(str)) {
+            return false;
+        } else {
+            return true;
+        }
+      }
+
+    //发起修改管理员个人信息请求
+    form.on('submit(admininfo)',function () {
+        let checktel=isPoneAvailable($('#tel').val());
+        let checkemail=isEmail($('#email').val())
+        if(!checktel||!checkemail){
+            layer.open({
+                title: '消息',
+                icon:2,
+                content: '请输入正确格式的电话或邮箱'
+            });
+            return;
+        }
+        $.ajax({
+            url: '/admin/admininfo',
+            type: 'POST',
+            dataType: 'JSON',
+            data: $('#admininfo').serialize(),
+            // data:data.field,
+            success: function (result) {
+                if (result.r == 'success') {
+                    layer.msg('修改信息成功',{icon:1,time:1000});
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                }
+            }
+        });
+        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    })
 });
+
+
+
+
+
+
 
 

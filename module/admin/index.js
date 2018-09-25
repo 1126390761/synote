@@ -13,7 +13,9 @@ router.use((req, res, next)=>{
 //模板引擎渲染主页
 router.get('/', (req, res)=>{
     let data={};
-    data.username = req.session.username;//把用户名保存下来传到前台去方便使用
+    data.username =req.session.username;//把用户名保存下来传到前台去方便使用
+    data.headerimg=req.session.headerimg;
+    console.log(data);
     res.render('admin/index',data);
 });
 
@@ -21,6 +23,7 @@ router.get('/', (req, res)=>{
 router.get('/addcate', (req, res)=>{
     let data={};
     data.username = req.session.username;
+    data.headerimg=req.session.headerimg;
     res.render('admin/addcate', data);
 });
 
@@ -45,6 +48,7 @@ router.post('/addcate', (req, res)=>{
 router.get('/updatecate', (req, res)=>{
     let data={};
     data.username = req.session.username;
+    data.headerimg=req.session.headerimg;
     //获取原始信息
     let cid =  req.query.cid;
     if(!cid){
@@ -76,6 +80,7 @@ router.post('/updatecate', (req, res)=>{
 router.get('/catelist', (req, res)=>{
     let data={};
     data.username = req.session.username;
+    data.headerimg=req.session.headerimg;
     //查询分类信息
     let sql = 'SELECT * FROM category WHERE status = 1';
     conn.query(sql, (err, results)=>{
@@ -124,6 +129,7 @@ router.get('/delcates', (req, res)=>{
 router.get('/addtech', (req, res)=>{
     let data={};
     data.username = req.session.username;
+    data.headerimg=req.session.headerimg;
     //分类教程
     let sql = 'SELECT * FROM category WHERE status = 1';
     conn.query(sql, (err, results)=>{
@@ -136,7 +142,6 @@ router.get('/addtech', (req, res)=>{
 router.post('/addtech', (req, res)=>{
     let d = req.body;
     let sql = 'INSERT INTO technology VALUES (?,?,?,?,?,?,?,?,?,?)';
-
     let data= [ null, 
                 d.title,
                 d.cid,
@@ -161,6 +166,7 @@ router.post('/addtech', (req, res)=>{
 router.get('/techlist', (req, res)=>{
     let data={};
     data.username = req.session.username;
+    data.headerimg=req.session.headerimg;
     //查询分类信息
     let sql = 'SELECT t.*, c.catename FROM technology AS t  LEFT JOIN category AS c ON t.cid = c.cid WHERE t.status = 1';
     conn.query(sql, (err, results)=>{
@@ -215,6 +221,7 @@ router.post('/updatetech', (req, res)=>{
 router.get('/updatetech', (req, res)=>{
     let data={};
     data.username = req.session.username;
+    data.headerimg=req.session.headerimg;
     data.tid=req.query.tid;
     async.series({
         findtech:function(callback){
@@ -260,4 +267,36 @@ router.post('/updatetechs', (req, res)=>{
         res.json({r:'success'});
     });
 });
+
+
+//渲染管理员个人信息页面
+router.get('/admininfo', (req, res)=>{
+    let data={};  
+    data.username = req.session.username;//把用户名保存下来传到前台去方便使用
+    data.headerimg=req.session.headerimg;
+    data.tel=req.session.tel;
+    data.email=req.session.email;
+    res.render('admin/admininfo',data);
+});
+//响应修改管理员信息修改请求
+router.post('/admininfo', (req, res)=>{
+    //console.log(req.body);
+    let sql='UPDATE admin SET username=?,headerimg=?,tel=?,email=?WHERE aid=?';
+    let data=[req.body.username,req.body.headerimg,req.body.tel,req.body.email,req.session.aid];
+    conn.query(sql,data,function (err,result) {
+        if(err){
+            res.json({r:'db_err'});
+            return;
+        }
+        //成功，更新session信息
+        req.session.username=req.body.username;
+        req.session.headerimg=req.body.headerimg;
+        req.session.tel=req.body.tel;
+        req.session.email=req.body.email;
+        res.json({r:'success'});
+    })
+});
+
+
+
 module.exports = router;

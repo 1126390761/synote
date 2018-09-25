@@ -32,6 +32,9 @@ router.post('/', (req, res)=>{
         //保存session信息
         req.session.aid = result[0].aid;
         req.session.username = result[0].username;
+        req.session.headerimg = result[0].headerimg;
+        req.session.tel=result[0].tel;
+        req.session.email=result[0].email;
         //更新状态
         let sql = 'UPDATE admin SET loginnum = loginnum + 1, lasttimes = ? WHERE aid = ?';
         conn.query(sql, [new Date().toLocaleString(), result[0].aid], (err, result)=>{

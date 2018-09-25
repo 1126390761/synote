@@ -77,9 +77,27 @@ footer img{
 }
 .mymain{
     padding-top: 20px;
-    border-left: 2px solid rgb(187, 20, 31);
 }
-.layui-footer{
-    border-left: 2px solid rgb(187, 20, 31);
 
+#headerimg{
+    width:60px;
+    height:60px;
+    cursor: pointer;
+}
+
+#admininfo{
+    width: 500px;
+    margin-left: 300px;
+}
+
+#username{
+    margin-left: 0;
+}
+
+input[lay-filter="admininfo"]{
+    float: right;
+}
+
+.adminname{
+    margin-left: 30px !important;
 }

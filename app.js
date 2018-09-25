@@ -13,7 +13,7 @@ global.md5=require("md5");
 
 const app = express();
 //定义各种参数
-let hostname = 'http://localhost:81/';
+let hostname = 'http://localhost:81/'; //上传图片的时候改变图片地址名字，保存成绝对地址
 let secret = 'sports.app.myweb.www';
 // 启用中间件
 app.use(bodyParser.urlencoded({extended: true}));
@@ -75,12 +75,13 @@ app.post('/uploads', upload.array('images', 1000), (req ,res)=>{
     });
 });
 //方便测试---后面要删除
-app.use(function(req ,res, next){
-    req.session.aid = 1;
-    req.session.username = '管理员';
-    next();
-});
-
+// app.use(function(req ,res, next){
+//     req.session.aid = 1;
+//     req.session.username = '管理员';
+//     req.session.headerimg = 'http://localhost:81/uploads/2018/09/1537845404540_41035549.jpg';
+//     next();
+// });
+// 
 //子路由
 //管理员登录
 app.use('/admin/login', require('./module/admin/login'));
@@ -89,9 +90,9 @@ app.use('/admin', require('./module/admin/index'));
 
 
 //用户子路由
-app.use('/login', require('./module/user/login'));
+app.use('/login', require('./module/users/login'));
 //试题部分
-app.use('/signin', require('./module/user/signin'));
+app.use('/signin', require('./module/users/signin'));
 
 
 //静态资源托管

@@ -1,0 +1,75 @@
+<% include head.html%>
+<% include aside.html%>
+<article class="layui-body">
+    <span class="layui-breadcrumb">
+        <a href="/admin">首页</a>
+                <a href="javascript:;">设置</a>
+        <a><cite>个人资料</cite></a>
+    </span>
+    <hr>
+    <form action="" method="post" enctype="multipart/form-data" class="layui-form" id='admininfo'>
+        <label class="header" for="images">
+            <img src="<%=headerimg%>" alt="用户头像" id="headerimg"><br>
+            <a href="###">修改头像</a>
+        </label>
+        
+        <div class="layui-form-item" style="display:none">
+            <div class="layui-input-block">
+                <!-- 图片文件 -->
+                <input type="file" name="images" id="images" style="display:none">
+            </div>
+        </div>
+        <div class="layui-form-item" style="display:none">
+            <div class="layui-input-block">
+                <!-- 路径 -->
+                <input type="hidden" value="<%=headerimg%>" name="headerimg" id="imgval">  
+            </div>
+        </div>
+        <div class="layui-form-item adminname">
+                <label for="username" class="layui-form-label">用户名:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="username" value='<%=username%>' id="username" autocomplete="off" class="layui-input" required lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item adminname">
+                    <label for="username" class="layui-form-label">电话:</label>
+                    <div class="layui-input-block">
+                        <input type="tel" name="tel" id="tel" value='<%=tel%>' autocomplete="off" class="layui-input" required lay-verify="required">
+                    </div>
+            </div>
+            <div class="layui-form-item adminname">
+                    <label for="username" class="layui-form-label">邮箱:</label>
+                    <div class="layui-input-block">
+                        <input type="email" name="email" id="email" value='<%=email%>' autocomplete="off" class="layui-input" required lay-verify="required">
+                    </div>
+            </div>
+        <input class="layui-btn" type="button" lay-submit lay-filter="admininfo" value="保存">
+    </form>
+
+    
+<% include footer.html%>
+<script>
+    let img = document.querySelector('#images');
+    //当你选择文件的时候，value值会发生改变，触发change事件
+    img.onchange = function(){
+        //获取选中的文件信息：文件内容
+        console.log(this.files[0]);
+        let _this = this;
+        // 使用ajax发送图片到服务器
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/uploads');
+        //创建一个表单数据对象
+        let formdata = new FormData();  //创建一个表单数据对象 可以理解为创建一个  <form>  </form>  
+        formdata.append("images", _this.files[0]);        //往表单里面追加input  name="images"  value="文件"
+        //不用设置请求头
+        xhr.send(formdata);
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == 4 && xhr.status==200){
+                let data = JSON.parse(xhr.responseText);
+                console.log(data);
+                document.querySelector('#headerimg').src = data.data[0];//即时修改显示的头像
+                document.querySelector('#imgval').value = data.data[0];//存储上传头像的路径，传到后台
+            }
+        }
+    }
+</script>
