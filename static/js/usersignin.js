@@ -71,7 +71,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: "/user/signin",
+            url: "/users/signin",
             data: $("#usersignin").serialize(),
             dataType: "JSON",
             success: function (result) {
@@ -93,7 +93,8 @@ $(function () {
                    
                 }
                 if(result.r == 'success'){
-                    window.location.href = '/admin';}
+                    alert('注册成功')
+                    window.location.href = '/users/login';}
 
 
             }

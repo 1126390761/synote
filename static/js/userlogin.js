@@ -98,7 +98,7 @@ $(function () {
                 }
 
                 if(result.r == 'ok'){
-                    window.location.href = '/users';}
+                    window.location.href = '/';}
 
             }
         });
