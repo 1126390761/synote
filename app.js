@@ -83,9 +83,9 @@ app.post('/uploads', upload.array('images', 1000), (req ,res)=>{
 
 //子路由
 //管理员登录
-// app.use('/admin/login', require('./module/admin/login'));
-// //管理员管理子路由
-// app.use('/admin', require('./module/admin/index'));
+app.use('/admin/login', require('./module/admin/login'));
+//管理员管理子路由
+app.use('/admin', require('./module/admin/index'));
 
 //用户登陆子路由
 app.use('/users/login', require('./module/users/login'));
@@ -95,6 +95,9 @@ app.use('/users/signin', require('./module/users/signin'));
 
 //用户子路由
 app.use('/users',require('./module/users/'));
+
+// 主页子路由
+app.use('/home',require('./module/home/index'));
 
 
 

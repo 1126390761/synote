@@ -240,10 +240,11 @@ router.get('/updatetech', (req, res)=>{
         findcates:function(callback){
             let sql ='SELECT * FROM category WHERE status = 1';
             conn.query(sql,(err,result)=>{
-                callback(null,result)
+                callback(null,result);//将查询结果(数组)传进回调函数
             });
         }
     },(err,result)=>{
+        //上面的回调函数就是将上面的各个操作步骤中查询出的数据以属性的形式存放到最终的这个result对象中
         data.techlist=result.findtech;
         data.catelist=result.findcates;
         res.render('admin/updatetech',data);

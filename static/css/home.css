@@ -2,24 +2,34 @@
 /* SOCIAM FONT ICON */
 /*-------------------------*/
 
+
+#part-info p{
+	line-height: 15px;
+	margin-top: 5px;
+}
+
+#techtitle+dd{
+	margin-top: 10px;
+}
+
 @font-face {
     font-family: 'socialicoregular';
-    src: url('font/socialico-webfont.eot');
-    src: url('font/socialico-webfont.eot?#iefix') format('embedded-opentype'),
-         url('font/socialico-webfont.woff2') format('woff2'),
-         url('font/socialico-webfont.woff') format('woff'),
-         url('font/socialico-webfont.ttf') format('truetype'),
-         url('font/socialico-webfont.svg#socialicoregular') format('svg');
+    src: url('/font/socialico-webfont.eot');
+    src: url('/font/socialico-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/font/socialico-webfont.woff2') format('woff2'),
+         url('/font/socialico-webfont.woff') format('woff'),
+         url('/font/socialico-webfont.ttf') format('truetype'),
+         url('/font/socialico-webfont.svg#socialicoregular') format('svg');
 }
 
 @font-face {
     font-family: 'socialico_plusregular';
-    src: url('font/socialico_plus-webfont.eot');
-    src: url('font/socialico_plus-webfont.eot?#iefix') format('embedded-opentype'),
-         url('font/socialico_plus-webfont.woff2') format('woff2'),
-         url('font/socialico_plus-webfont.woff') format('woff'),
-         url('font/socialico_plus-webfont.ttf') format('truetype'),
-         url('font/socialico_plus-webfont.svg#socialico_plusregular') format('svg');
+    src: url('/font/socialico_plus-webfont.eot');
+    src: url('/font/socialico_plus-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/font/socialico_plus-webfont.woff2') format('woff2'),
+         url('/font/socialico_plus-webfont.woff') format('woff'),
+         url('/font/socialico_plus-webfont.ttf') format('truetype'),
+         url('/font/socialico_plus-webfont.svg#socialico_plusregular') format('svg');
 }
 
 /*-------------------------*/
@@ -116,7 +126,7 @@ body,html{
 }
 
 #stripes{
-	background: url(img/stripes.svg) no-repeat;
+	background: url(/h_img/stripes.svg) no-repeat;
 	position:absolute;
 	width:27px;
 	height:20px;
@@ -173,7 +183,7 @@ body,html{
 #fleche-nav-1,#fleche-nav-2,#fleche-nav-3{
 	float:left;
 	margin-top:26px;
-	background: url(img/fleche-nav.svg) no-repeat ;
+	background: url(/h_img/fleche-nav.svg) no-repeat ;
 	width:5px;
 	height:10px;
 	margin-left:5px;
@@ -254,7 +264,7 @@ body,html{
 	height:18px;
 	right:25px;
 	margin-top:25px;
-	background: url(img/cross-menu.svg) no-repeat;
+	background: url(/h_img/cross-menu.svg) no-repeat;
 	cursor:pointer;
 }
 
@@ -275,7 +285,7 @@ body,html{
 	height:53px;
 	left:50%;
 	margin-left:-65.5px;
-	background: url(img/small-logo.svg) no-repeat;
+	background: url(/h_img/small-logo.svg) no-repeat;
 }
 
 /*----------------------------*/
@@ -499,8 +509,8 @@ body,html{
 	cursor:pointer;
 }
 
-#oldnew-next{background: url(img/next.svg) no-repeat;margin-left:25px;float:left;}
-#oldnew-prev{background: url(img/prev.svg) no-repeat;margin-right:25px;float:right;}
+#oldnew-next{background: url(/h_img/next.svg) no-repeat;margin-left:25px;float:left;}
+#oldnew-prev{background: url(/h_img/prev.svg) no-repeat;margin-right:25px;float:right;}
 
 /*----------------------------*/
 /* FOOTER */
@@ -567,7 +577,7 @@ body,html{
 	-webkit-appearance: none;
     box-shadow: none; 
 	outline: 0;
-	background: url(img/icon-newsletter.svg) no-repeat 10px 9px;
+	background: url(/h_img/icon-newsletter.svg) no-repeat 10px 9px;
 	margin-left:20px;
 	vertical-align:center;
 	font-weight:400;
@@ -598,7 +608,7 @@ body,html{
     box-shadow: none; 
 	outline: 0;
 	margin: 0;
-	background: url(img/icon-search.svg) no-repeat 12px 7px;
+	background: url(/h_img/icon-search.svg) no-repeat 12px 7px;
 	vertical-align:center;
 	margin-left:-40px;
 	background-color:#FFF;
@@ -606,7 +616,7 @@ body,html{
 
 #loupe{
 	position:absolute;
-	background: url(img/loupe.svg) no-repeat;
+	background: url(/h_img/loupe.svg) no-repeat;
 	width:28px;
 	height:30px;
 	right:20px;
