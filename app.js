@@ -106,6 +106,9 @@ app.use('/home',require('./module/home/index'));
 app.use('/uploads', express.static('uploads'));
 app.use(express.static('static'));
 
+
+//app.use('/',require('./module/home'))
+
 app.listen(81, () => {
     console.log('成功启动...');
 });

@@ -9,8 +9,7 @@
 <!-- Behavioral Meta Data -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="icon" type="image/png" href="img/small-logo-01.png">
-<link rel="stylesheet" href="/css/details.css">
+<link rel="stylesheet" href="/css/detail1s.css">
 <style>
 
 
@@ -30,7 +29,7 @@
 
 <div id="wrapper-header">
 	<div id="main-header" class="object">
-		<a href="index.html"><div id="logo"><img src="img/logo-burst.svg" alt="logo burstfly" height="38" width="90"></div></a>
+		<a href="index.html"><div id="logo"><img src="/h_img/logo-burst.svg" alt="logo burstfly" height="38" width="90"></div></a>
         <div id="main_tip_search"> 
 			<form>
 				<input type="text" name="search" id="tip_search_input" list="search" autocomplete="off" required>
@@ -46,7 +45,7 @@
 		<div class="navbar object">
     		<div id="wrapper-sorting">
             <div id="wrapper-title-1">
-            <div class="top-rated object">Top-rated</div>
+            <div class="top-rated object">最新照片</div>
             	<div id="fleche-nav-1"></div>
     		</div>
             
@@ -61,12 +60,12 @@
     		</div>
             </div>
             <div id="wrapper-bouton-icon">
-            	<div id="bouton-ai"><img src="img/icon-ai.svg" alt="illustrator" title="Illustrator" height="28" width="28"></div>
-            	<div id="bouton-psd"><img src="img/icon-psd.svg" alt="photoshop" title="Photoshop" height="28" width="28"></div>
-            	<div id="bouton-theme"><img src="img/icon-themes.svg" alt="theme" title="Theme" height="28" width="28"></div>
-            	<div id="bouton-font"><img src="img/icon-font.svg" alt="font" title="Font" height="28" width="28"></div>
-            	<div id="bouton-photo"><img src="img/icon-photo.svg" alt="photo" title="Photo" height="28" width="28"></div>
-            	<div id="bouton-premium"><img src="img/icon-premium.svg" alt="premium" title="Premium" height="28" width="28"></div>
+            	<div id="bouton-ai"><img src="/h_img/icon-ai.svg" alt="illustrator" title="Illustrator" height="28" width="28"></div>
+            	<div id="bouton-psd"><img src="/h_img/icon-psd.svg" alt="photoshop" title="Photoshop" height="28" width="28"></div>
+            	<div id="bouton-theme"><img src="/h_img/icon-themes.svg" alt="theme" title="Theme" height="28" width="28"></div>
+            	<div id="bouton-font"><img src="/h_img/icon-font.svg" alt="font" title="Font" height="28" width="28"></div>
+            	<div id="bouton-photo"><img src="/h_img/icon-photo.svg" alt="photo" title="Photo" height="28" width="28"></div>
+            	<div id="bouton-premium"><img src="/h_img/icon-premium.svg" alt="premium" title="Premium" height="28" width="28"></div>
 			</div>
     	</div>
     </div>
@@ -121,20 +120,18 @@
 			<div id="main-container-image">
             	
                 <div class="title-item">
-                	<div class="title-icon"></div>
-                    <div class="title-text">Ipad Pro Mockup </div>
-                    <div class="title-text-2">Sept 25, 2015 by Onuur</div>
+                
+                    <div class="title-text"><%-photos[0].title%> </div>
+                    <div class="title-text-2"><%=photos[0].addtimes.toLocaleString()%> </div>
                 </div>
                 
      			       
 				<div class="work">
 					<figure class="white">
-							 <img src="img/psd-4.jpg" alt="" />
+							 <img src="<%-photos[0].mainpic%>" alt="" />
                          <div id="wrapper-part-info">
                              <div class="part-info-image-single">
-                                <img src="img/mockup-1.jpg" alt="" width="628" height="437"/>
-                                <img src="img/mockup-2.jpg" alt="" width="628" height="437"/>
-                                <img src="img/mockup-3.jpg" alt="" width="628" height="437"/>
+                                <%-photos[0].pcontent%>
                              </div>
 						 </div>
                     </figure>	
@@ -142,37 +139,37 @@
                 <div class="wrapper-text-description">
                 
                 	<div class="wrapper-view">
-                    	<div class="icon-view"><img src="img/icon-eye.svg" alt="" width="24" height="16"/></div>
+                    	<div class="icon-view"><img src="/h_img/icon-eye.svg" alt="" width="24" height="16"/></div>
                         <div class="text-view">2,451 views</div>
                     </div>
                 
                 	<div class="wrapper-file">
-                    	<div class="icon-file"><img src="img/icon-psdfile.svg" alt="" width="21" height="21"/></div>
+                    	<div class="icon-file"><img src="/h_img/icon-psdfile.svg" alt="" width="21" height="21"/></div>
                         <div class="text-file">Photoshop</div>
                     </div>
                     
                     <div class="wrapper-weight">
-                    	<div class="icon-weight"><img src="img/icon-weight.svg" alt="" width="20" height="23"/></div>
+                    	<div class="icon-weight"><img src="/h_img/icon-weight.svg" alt="" width="20" height="23"/></div>
                         <div class="text-weight">23 Mo</div>
                     </div>
                     
                     <div class="wrapper-desc">
-                    	<div class="icon-desc"><img src="img/icon-desc.svg" alt="" width="24" height="24"/></div>
+                    	<div class="icon-desc"><img src="/h_img/icon-desc.svg" alt="" width="24" height="24"/></div>
                         <div class="text-desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </div>
                     </div>
                     
                     <div class="wrapper-download">
-                    	<div class="icon-download"><img src="img/icon-download.svg" alt="" width="19" height="26"/></div>
+                    	<div class="icon-download"><img src="/h_img/icon-download.svg" alt="" width="19" height="26"/></div>
                         <div class="text-download"><a href="#"><b>Download</b></a></div>
                     </div>
                     
                     <div class="wrapper-morefrom">
                     	<div class="text-morefrom">More from .psd</div>
                         <div class="image-morefrom">
-                        	<a href="#"><div class="image-morefrom-1"><img src="img/psd-1.jpg" alt="" width="430" height="330"/></div></a>
-                            <a href="#"><div class="image-morefrom-2"><img src="img/psd-2.jpg" alt="" width="430" height="330"/></div></a>
-                            <a href="#"><div class="image-morefrom-3"><img src="img/psd-3.jpg" alt="" width="430" height="330"/></div></a>
-                            <a href="#"><div class="image-morefrom-4"><img src="img/psd-6.jpg" alt="" width="430" height="330"/></div></a>
+                        	<a href="#"><div class="image-morefrom-1"><img src="/h_img/psd-1.jpg" alt="" width="430" height="330"/></div></a>
+                            <a href="#"><div class="image-morefrom-2"><img src="/h_img/psd-2.jpg" alt="" width="430" height="330"/></div></a>
+                            <a href="#"><div class="image-morefrom-3"><img src="/h_img/psd-3.jpg" alt="" width="430" height="330"/></div></a>
+                            <a href="#"><div class="image-morefrom-4"><img src="/h_img/psd-6.jpg" alt="" width="430" height="330"/></div></a>
                         </div>
                     </div>
                     
@@ -256,13 +253,13 @@
 <!-- SCRIPT -->
 
 	<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
-    <script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
-    <script type="text/javascript" src="js/jquery-animate-css-rotate-scale.js"></script>
-	<script type="text/javascript" src="js/fastclick.min.js"></script>
-	<script type="text/javascript" src="js/jquery.flip.min.js"></script>
-	<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
-	<script type="text/javascript" src="js/jquery.animate-shadow-min.js"></script>    
+    <script type="text/javascript" src="/h_js/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="/h_js/jquery.localScroll.min.js"></script>
+    <script type="text/javascript" src="/h_js/jquery-animate-css-rotate-scale.js"></script>
+	<script type="text/javascript" src="/h_js/fastclick.min.js"></script>
+	<script type="text/javascript" src="/h_js/jquery.flip.min.js"></script>
+	<script type="text/javascript" src="/h_js/jquery.animate-colors-min.js"></script>
+	<script type="text/javascript" src="/h_js/jquery.animate-shadow-min.js"></script>    
 	
 	<script>
 	

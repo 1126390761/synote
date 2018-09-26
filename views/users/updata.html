@@ -17,7 +17,8 @@
         <div class="container">
 
             <form class="layui-form-item" id="upadata">
-                   
+                <input type="hidden"  id="mainpic" name="mainpic" value="">
+
                 <div class="layui-form-item">
                     <label class="layui-form-label">题目</label>
                     <div class="layui-input-block">
@@ -30,7 +31,7 @@
                     <label class="uploadtext">添加预览图:</label>
                     <hr style="margin:6px 0;">
                     <span class="upinput">
-                    <input type="file" id="mainpic" name="mainpic"  class="valid" aria-invalid="false">
+                    <input type="file"  name="imgs" id="imgs" class="valid" aria-invalid="false">
                     
                     
                     </span>
@@ -38,7 +39,6 @@
                     
                     
                     </div>
-              
                 <div class="layui-form-item">
                     <label class="layui-form-label">分类</label>
                     <div class="layui-input-block">
@@ -98,6 +98,7 @@
                     $answer.val(html);
                 }
                 answereditor.create();
+
           
         }
            

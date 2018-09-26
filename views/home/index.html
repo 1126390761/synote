@@ -117,12 +117,12 @@
 
 						<% for(let p of photos){%>
 							<figure class="white">
-								<a href="/index/pinfo?pid=<%=p.pid%>">
+								<a href="/home/details?pid=<%=p.pid%>">
 									<img src="<%=p.mainpic%>" alt="" />
 									<!-- 显示展示图 -->
 								</a>
 								<div id="wrapper-part-info">
-									<div id="part-info"><%=p.title%></div>
+									<div id="part-info"><%-p.title%></div>
 								</div>
 							</figure>	
 	

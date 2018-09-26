@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
         data.users = result;
     
         res.render('users/index', data);
-        console.log(data);
+    
     })
 });
 router.get('/updata', (req, res)=>{
@@ -45,13 +45,17 @@ router.post('/updata', (req, res) => {
     let d = req.body;
     d.uid=req.session.uid;
     d.username=req.session.username;
+    // console.log(d);
+    // let data2=JSON.parse(d);
     console.log(d);
+    
     //标题，分类ID ，照片描述，关键词，添加人ID ，添加人姓名，添加时间，状态0提供审核
-    let sql = 'INSERT INTO photos(title, cid, pcontent , keywords ,uid ,username ,  addtimes ,status ) VALUES (?,?,?,?,?,?,?,?)';
-    let data1 = [d.title, d.cid, d.pcontent, d.keywords, d.uid, d.username, new Date().toLocaleString(), 0];
+    let sql = 'INSERT INTO photos(title, cid, pcontent , keywords ,mainpic,uid ,username ,  addtimes ,status ) VALUES (?,?,?,?,?,?,?,?,?)';
+    let data1 = [d.title, d.cid, d.pcontent, d.keywords, d.mainpic ,d.uid, d.username, new Date().toLocaleString(), 0];
     conn.query(sql, data1, (err, result) => {
+      
         if (err) {
-            console.log(err);
+         
             res.json({
                 r: 'db_err'
             });
@@ -66,7 +70,7 @@ router.get('/deldata', (req, res)=>{
     let sql = 'UPDATE photos SET status = 2 WHERE pid = ? LIMIT 1';
     conn.query(sql, req.query.pid, (err, result)=>{
         if(err){
-            console.log(err);
+            // console.log(err);
             res.json({r:'db_err'});
             return ;
         }
@@ -90,7 +94,7 @@ router.get('/deldata', (req, res)=>{
          let data2 = [d.pid, d.uid, d.content, new Date().toLocaleString(), 1];
          conn
          if (err) {
-            console.log(err);
+            // console.log(err);
             res.json({
                 r: 'db_err'
             });
