@@ -47,11 +47,11 @@ router.post('/updata', (req, res) => {
     d.username=req.session.username;
     // console.log(d);
     // let data2=JSON.parse(d);
-    console.log(d);
+    //console.log(d);
     
     //标题，分类ID ，照片描述，关键词，添加人ID ，添加人姓名，添加时间，状态0提供审核
     let sql = 'INSERT INTO photos(title, cid, pcontent , keywords ,mainpic,uid ,username ,  addtimes ,status ) VALUES (?,?,?,?,?,?,?,?,?)';
-    let data1 = [d.title, d.cid, d.pcontent, d.keywords, d.mainpic ,d.uid, d.username, new Date().toLocaleString(), 0];
+    let data1 = [d.title, d.cid, d.pcontent, d.keywords, d.mainpic ,d.uid, d.username, new Date().toLocaleString(), 1];
     conn.query(sql, data1, (err, result) => {
       
         if (err) {

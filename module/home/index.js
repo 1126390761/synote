@@ -10,7 +10,7 @@ router.get('/',(req, res)=>{
     conn.query(sql, (err, result) => {
         data.photos = result;
         res.render('home/index', data);
-        console.log(data);
+        // console.log(data);
     })
 })
 
@@ -23,7 +23,7 @@ router.get('/details',(req,res)=>{
     conn.query(sql,req.query.pid, (err, result) => {
         data.photos = result;
         res.render('home/details', data);
-        console.log(data);
+        // console.log(data);
     })
 });
 

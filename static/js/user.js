@@ -10,7 +10,7 @@ $(function(){
             success: function (result) {
                 if (result.r == 'success'){
                     alert("上传成功，等待审核");
-                    window.location.href = '/users';
+                    window.location.href = '/home';
                 }
             }
         });
