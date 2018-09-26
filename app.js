@@ -59,6 +59,7 @@ app.get('/coder', (req, res) => {
 	res.status(200).send(captcha.data);
 });
 
+
 // 上传图片接口
 app.post('/uploads', upload.array('images', 1000), (req ,res)=>{
     // console.log(req.files);
